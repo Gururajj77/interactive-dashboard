@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, catchError, map, throwError } from 'rxjs';
 import { CardType } from '../main/components/data-cards/utils/cardTypes';
 import { CHART_ICON, DOWN_ARROW, MUSIC_ICON, REFRESH_ICON } from './customCardIcons';
+import { newUserTypeWithoutColor } from '../main/components/new-users/utils/userTypes';
+import { recentOrders } from '../main/components/recent-orders/utils/tableDatatypes';
 
 
 
@@ -37,7 +39,7 @@ export class CardDataService {
   getQueriedTableData(customData: string) {
     return this.fetchData().pipe(
       map((response: any) => {
-        return (response?.[customData]).map((res: any, index: number) => {
+        return (response?.[customData]).map((res: recentOrders[], index: number) => {
           return { ...res, 'num': `${index + 1}` }
         }
         )
@@ -53,7 +55,7 @@ export class CardDataService {
     return '#' + (Math.random() * 0xFFFFFF << 0).toString(16).padStart(6, '0');
   }
 
-  modifyResponseObjects(responseObjects: any[]): any[] {
+  modifyResponseObjects(responseObjects: newUserTypeWithoutColor[]): any[] {
     return responseObjects.map((obj) => ({
       ...obj,
       barColor: this.generateRandomHexColor(),
@@ -76,6 +78,4 @@ export class CardDataService {
       })
     );
   }
-
-
 }

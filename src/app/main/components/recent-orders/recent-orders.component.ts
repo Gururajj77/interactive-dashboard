@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
 import { CardDataService } from 'src/app/services/card-data.service';
-import { CardType } from '../data-cards/utils/cardTypes';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { OPEN_ICON } from '../../utils/customMainIcons';
+import { recentOrdersWithIndex } from './utils/tableDatatypes';
 @Component({
   selector: 'app-recent-orders',
   templateUrl: './recent-orders.component.html',
@@ -20,9 +20,9 @@ export class RecentOrdersComponent {
   constructor(private tableData: CardDataService, iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
     iconRegistry.addSvgIconLiteral('open', sanitizer.bypassSecurityTrustHtml(OPEN_ICON));
   }
-  tableView: any = []
+  tableView: recentOrdersWithIndex[] = []
   ngOnInit() {
-    this.tableData.getQueriedTableData('recent_orders').pipe(takeUntil(this._unSubscribeAll)).subscribe((data: CardType[]) => {
+    this.tableData.getQueriedTableData('recent_orders').pipe(takeUntil(this._unSubscribeAll)).subscribe((data: recentOrdersWithIndex[]) => {
       this.tableView = data;
     })
   }
