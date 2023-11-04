@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
-import { CardDataService } from 'src/app/services/card-data.service';
+import { DataService } from 'src/app/services/data.service';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { OPEN_ICON } from '../../utils/customMainIcons';
 import { recentOrdersWithIndex } from './utils/tableDatatypes';
+import { RecentOrdersService } from './utils/recent-orders.service';
 @Component({
   selector: 'app-recent-orders',
   templateUrl: './recent-orders.component.html',
@@ -17,7 +18,7 @@ export class RecentOrdersComponent {
   modalName: string = "";
   modalProduct: string = "";
 
-  constructor(private tableData: CardDataService, iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
+  constructor(private tableData: RecentOrdersService, iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
     iconRegistry.addSvgIconLiteral('open', sanitizer.bypassSecurityTrustHtml(OPEN_ICON));
   }
   tableView: recentOrdersWithIndex[] = []

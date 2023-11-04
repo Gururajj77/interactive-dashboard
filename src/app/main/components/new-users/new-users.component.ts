@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
-import { CardDataService } from 'src/app/services/card-data.service';
+import { DataService } from 'src/app/services/data.service';
 import { newUserType } from './utils/userTypes';
+import { NewUserDataService } from './utils/new-user-data.service';
 
 @Component({
   selector: 'app-new-users',
@@ -12,7 +13,7 @@ export class NewUsersComponent {
 
   newUserData: newUserType[] = [];
   private _unSubscribeAll = new Subject();
-  constructor(private newUserDataService: CardDataService) { }
+  constructor(private newUserDataService: NewUserDataService) { }
 
   ngOnInit() {
     this.newUserDataService.getQueriedNewUserData('new_users').pipe(takeUntil(this._unSubscribeAll)).subscribe((data: newUserType[]) => {
