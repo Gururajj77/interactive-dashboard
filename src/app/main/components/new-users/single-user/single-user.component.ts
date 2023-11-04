@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, HostBinding } from '@angular/core';
+
 
 @Component({
   selector: 'app-single-user',
@@ -6,6 +7,10 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./single-user.component.scss']
 })
 export class SingleUserComponent {
-
+  @HostBinding('style.--customWidth') customWidth: string = ""
   @Input() singleUser: any;
+  ngOnInit() {
+    this.customWidth = `${this.singleUser['progress']}%`
+    console.log(this.singleUser.progress);
+  }
 }
