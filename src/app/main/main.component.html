@@ -1,0 +1,30 @@
+<div
+  class="bg-main-bg w-screen h-full lg:pl-14 pt-24 flex flex-col items-center"
+>
+  <app-data-cards class="flex flex-col lg:flex-row gap-6" />
+  <div
+    class="grid gap-4 grid-cols-1 lg:grid-cols-3 w-full pl-4 lg:pl-12 pr-4 lg:pr-12 m-5"
+  >
+    <div class="col-span-1 lg:col-span-2 border">
+      <div>
+        <app-recent-orders />
+      </div>
+    </div>
+    <div class="col-span-1 lg:col-span-1">
+      <div>
+        <app-new-users />
+      </div>
+    </div>
+  </div>
+  <div class="grid grid-cols-3 gap-4 lg:pl-12 w-full">
+    <div class="col-span-1">
+      <app-line-graph />
+    </div>
+    <div class="col-span-1">
+      <app-bar-graph />
+    </div>
+    <div class="col-span-1">
+      <app-donut-graph />
+    </div>
+  </div>
+</div>

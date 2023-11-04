@@ -1,0 +1,21 @@
+<!-- <div class="bg-white">
+  <p class="font-bold p-3">Sales Statistics</p>
+  <canvas
+    baseChart
+    [data]="chartData"
+    [labels]="chartLabels"
+    [options]="chartOptions"
+    [legend]="true"
+    [type]="chartType"
+  >
+  </canvas>
+</div> -->
+<div class="bg-white flex justify-center">
+  <fusioncharts
+    [type]="'area2d'"
+    [dataSource]="dataSource"
+    [width]="'400'"
+    [height]="'280'"
+  >
+  </fusioncharts>
+</div>

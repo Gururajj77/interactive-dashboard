@@ -1,0 +1,19 @@
+<ng-container *ngIf="icon">
+  <svg
+    [attr.xmlns]="icon.xmlns"
+    [attr.fill]="icon.fill"
+    [attr.viewBox]="icon.viewBox"
+    [attr.stroke-width]="icon.strokeWidth"
+    [attr.stroke]="icon.stroke"
+    [attr.class]="icon.cssClass + ' text-custom-card-text'"
+    [attr.transform]="'scale(2)'"
+  >
+    <ng-container *ngFor="let path of icon.paths">
+      <path
+        [attr.stroke-linecap]="path.strokeLinecap"
+        [attr.stroke-linejoin]="path.strokeLinejoin"
+        [attr.d]="path.d"
+      ></path>
+    </ng-container>
+  </svg>
+</ng-container>

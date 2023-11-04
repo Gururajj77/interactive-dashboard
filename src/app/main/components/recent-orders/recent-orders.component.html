@@ -1,0 +1,83 @@
+<div class="container bg-white no-scrollbar overflow-x-auto max-h-96 shadow-sm">
+  <div>
+    <p class="m-5 font-bold text-md">Recent Orders</p>
+  </div>
+  <div class="p-4">
+    <table class="min-w-full table-auto border-collapse bg-white">
+      <thead>
+        <tr>
+          <th class="border-b border-table-border px-4 py-2 text-center">#</th>
+          <th class="border-b border-table-border px-4 py-2 text-center">
+            Customer
+          </th>
+          <th class="border-b border-table-border px-4 py-2 text-center">
+            Product
+          </th>
+          <th class="border-b border-table-border px-4 py-2 text-center">
+            Delivery Date
+          </th>
+          <th class="border-b border-table-border px-4 py-2 text-center">
+            Status
+          </th>
+          <th class="border-b border-table-border px-4 py-2 text-center">
+            Tracking No#
+          </th>
+          <th class="border-b border-table-border px-4 py-2 text-center">
+            Shipping
+          </th>
+          <th class="border-b border-table-border px-4 py-2 text-center"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          class="hover:bg-table-border transition duration-200 ease-in-out transform"
+          *ngFor="let item of tableView; let i = index"
+        >
+          <td class="border-b border-table-border px-4 py-2 text-center">
+            {{ item.num }}
+          </td>
+          <td class="border-b border-table-border px-4 py-2 text-center">
+            {{ item.name }}
+          </td>
+          <td class="border-b border-table-border px-4 py-2 text-center">
+            {{ item.product }}
+          </td>
+          <td class="border-b border-table-border px-4 py-2 text-center">
+            {{ item.delivery_date | date : "d MMM, y" }}
+          </td>
+          <td class="border-b border-table-border px-4 py-2 text-center">
+            <p
+              [ngClass]="
+                getStatusColor(item.status) + ' text-white p-1 rounded-sm'
+              "
+            >
+              {{ item.status }}
+            </p>
+          </td>
+          <td class="border-b border-table-border px-4 py-2 text-center">
+            {{ item.tracking_no }}
+          </td>
+          <td class="border-b border-table-border px-4 py-2 text-center">
+            {{ item.shipping == true ? "Yes" : "No" }}
+          </td>
+          <td
+            class="border-b border-table-border px-4 py-2 text-center cursor-pointer"
+          >
+            <mat-icon
+              svgIcon="open"
+              aria-hidden="false"
+              class="hover:text-custom-hover"
+              (click)="openModal(item.name, item.product)"
+            ></mat-icon>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<app-custom-modal
+  *ngIf="isModalOpen"
+  [name]="modalName"
+  [product]="modalProduct"
+  (close)="closeModal()"
+/>

@@ -1,1 +1,83 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use "@angular/material" as mat;
+// Plus imports for other components in your app.
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$interactive-dashboard-primary: mat.define-palette(mat.$indigo-palette);
+$interactive-dashboard-accent: mat.define-palette(
+  mat.$pink-palette,
+  A200,
+  A100,
+  A400
+);
+
+// The warn palette is optional (defaults to red).
+$interactive-dashboard-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$interactive-dashboard-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $interactive-dashboard-primary,
+      accent: $interactive-dashboard-accent,
+      warn: $interactive-dashboard-warn,
+    ),
+  )
+);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($interactive-dashboard-theme);
+
 /* You can add global styles to this file, and also import other style files */
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap");
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: "Inter", "Helvetica Neue", sans-serif;
+}
+// @layer utilities {
+//   .no-scrollbar::-webkit-scrollbar {
+//     display: none;
+//   }
+
+//   .no-scrollbar {
+//     -ms-overflow-style: none;
+//     scrollbar-width: none;
+//   }
+// }
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d1cece;
+  border-radius: 10px;
+}
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #888 #f1f1f1;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@200&display=swap");
