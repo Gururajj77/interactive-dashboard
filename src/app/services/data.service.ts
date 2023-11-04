@@ -1,10 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, catchError, map, throwError } from 'rxjs';
-import { newUserTypeWithoutColor } from '../main/components/new-users/utils/userTypes';
-import { recentOrders } from '../main/components/recent-orders/utils/tableDatatypes';
-
-
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
