@@ -49,10 +49,26 @@ export class CardDataService {
     );
   }
 
+  private generateRandomHexColor(): string {
+    return '#' + (Math.random() * 0xFFFFFF << 0).toString(16).padStart(6, '0');
+  }
+
+  modifyResponseObjects(responseObjects: any[]): any[] {
+    return responseObjects.map((obj) => ({
+      ...obj,
+      barColor: this.generateRandomHexColor(),
+    }));
+  }
+
   getQueriedNewUserData(customData: string) {
     return this.fetchData().pipe(
       map((response: any) => {
-        return (response?.[customData])
+        const queriedData = response?.[customData];
+        if (queriedData) {
+          return this.modifyResponseObjects(queriedData);
+        } else {
+          return [];
+        }
       }),
       catchError((error: any) => {
         console.error('Error while fetching new users list:', error);
@@ -60,4 +76,6 @@ export class CardDataService {
       })
     );
   }
+
+
 }

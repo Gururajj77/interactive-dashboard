@@ -8,9 +8,11 @@ import { Component, Input, HostBinding } from '@angular/core';
 })
 export class SingleUserComponent {
   @HostBinding('style.--customWidth') customWidth: string = ""
+  @HostBinding('style.--customBarColor') customBarColor: string = ""
   @Input() singleUser: any;
   ngOnInit() {
-    this.customWidth = `${this.singleUser['progress']}%`
-    console.log(this.singleUser.progress);
+    this.customWidth = `${this.singleUser['progress']}%`;
+    this.customBarColor = `${this.singleUser['barColor']}`;
+    console.log(this.customBarColor);
   }
 }

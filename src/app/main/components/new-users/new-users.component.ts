@@ -14,7 +14,7 @@ export class NewUsersComponent {
   constructor(private newUserDataService: CardDataService) { }
 
   ngOnInit() {
-    this.newUserDataService.getQueriedTableData('new_users').pipe(takeUntil(this._unSubscribeAll)).subscribe((data: any) => {
+    this.newUserDataService.getQueriedNewUserData('new_users').pipe(takeUntil(this._unSubscribeAll)).subscribe((data: any) => {
       this.newUserData = data;
     })
   }
